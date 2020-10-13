@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <title>Hello World!</title>
+</head>
+<body>
+<div th:if="${message}"  style="color:red">
+    [[${message}]]
+</div>
+<h1 th:inline="text">
+    Hello [[${#httpServletRequest.remoteUser}]]!
+    <span>UserName: </span> [[${info.username}]]
+    <span>Role: </span> [[${info.role}]]
+</h1>
+<tbody>
+<tr th:if="${users.empty}" style="color:red">
+    <td colspan="2"> No User Available </td>
+</tr>
+<tr th:each="user : ${users}">
+    <td><br>First Name: <span th:text="${user.firstName}"> </span><br></td>
+    <td>Middle Name: <span th:text="${user.middleName}"> </span><br></td>
+    <td>Last Name: <span th:text="${user.lastName}"> </span><br></td>
+    <td>Email: <span th:text="${user.email}"> </span><br></td>
+    <td>Mobile Number: <span th:text="${user.mobileNumber}"> </span><br><br></td>
+    <td>
+        <a th:href="@{/updateUser/{id}(id=${user.id})}">Update User</a><br><br>
+    </td>
+</tr>
+
+</tbody>
+
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
+</body>
+</html>

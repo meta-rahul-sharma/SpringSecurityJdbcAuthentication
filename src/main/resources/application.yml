@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  session:
+    timeout: 120
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-security-auth
+    username: postgres
+    password: heroku#123
+flyway:
+  url: jdbc:postgresql://localhost:5432/
+  schemas: spring-security-auth
+  user: postgres
+  password: heroku#123
